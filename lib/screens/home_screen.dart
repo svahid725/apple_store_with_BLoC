@@ -1,6 +1,7 @@
 import 'package:apple_store/constants/app_theme.dart';
 import 'package:apple_store/constants/font_styles.dart';
 import 'package:apple_store/widgets/banner_slider.dart';
+import 'package:apple_store/widgets/category_icon_item_chip.dart';
 import 'package:apple_store/widgets/product_item.dart';
 import 'package:flutter/material.dart';
 
@@ -67,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) => const Padding(
                         padding: EdgeInsets.only(left: 20),
-                        child: CategoryHorizontalItemList(),
+                        child: CategoryItemChip(),
                       ),
                     ),
                   ),
@@ -176,39 +177,3 @@ class HomeScreen extends StatelessWidget {
 }
 
 
-class CategoryHorizontalItemList extends StatelessWidget {
-  const CategoryHorizontalItemList({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 56,
-          width: 56,
-          decoration: ShapeDecoration(
-              color: Colors.red,
-              shadows: const [
-                BoxShadow(
-                  color: Colors.red,
-                  spreadRadius: -7,
-                  blurRadius: 15,
-                  offset: Offset(0, 10),
-                )
-              ],
-              shape: ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.circular(40))),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        const Text(
-          'همه',
-          style: TextStyle(fontFamily: 'SB', fontSize: 12),
-        )
-      ],
-    );
-  }
-}

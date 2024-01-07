@@ -5,6 +5,7 @@ import 'package:apple_store/constants/font_styles.dart';
 import 'package:apple_store/screens/category_screen.dart';
 import 'package:apple_store/screens/home_screen.dart';
 import 'package:apple_store/screens/product_list_screen.dart';
+import 'package:apple_store/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -126,10 +127,10 @@ class _MyAppState extends State<MyApp> {
 
   List<Widget> getScreens() {
     return <Widget> [
-      const HomeScreen(),
+      const ProfileScreen(),
       const CategoryScreen(),
       const ProductListScreen(),
-      const CategoryScreen()
+      const HomeScreen(),
     ];
   }
 }
