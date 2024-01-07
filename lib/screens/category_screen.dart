@@ -34,7 +34,7 @@ class CategoryScreen extends StatelessWidget {
             ),
           ),
           SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: 44),
+            padding: const EdgeInsets.symmetric(horizontal: 44),
             sliver: SliverGrid(delegate: SliverChildBuilderDelegate((context, index) => Container(
               decoration: const BoxDecoration(
                 color: Colors.red,
