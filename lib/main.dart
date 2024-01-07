@@ -1,3 +1,4 @@
+import 'package:apple_store/screens/category_screen.dart';
 import 'package:apple_store/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
-      child: HomeScreen(),
+      child: CategoryScreen(),
     );
   }
 }
