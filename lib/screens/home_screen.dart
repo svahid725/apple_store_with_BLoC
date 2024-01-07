@@ -1,6 +1,5 @@
 import 'package:apple_store/constants/app_theme.dart';
 import 'package:apple_store/constants/font_styles.dart';
-import 'package:apple_store/main.dart';
 import 'package:apple_store/widgets/banner_slider.dart';
 import 'package:apple_store/widgets/product_item.dart';
 import 'package:flutter/material.dart';

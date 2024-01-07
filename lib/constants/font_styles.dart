@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:apple_store/constants/app_theme.dart';
 import 'package:flutter/material.dart';
 
