@@ -1,3 +1,4 @@
+import 'package:apple_store/constants/app_theme.dart';
 import 'package:apple_store/constants/font_styles.dart';
 import 'package:apple_store/widgets/product_item.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ class ProductListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundScreenColor,
       body: SafeArea(
           child: CustomScrollView(
         slivers: [
@@ -48,7 +50,7 @@ class ProductListScreen extends StatelessWidget {
                 ),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  mainAxisSpacing: 20,
+                  mainAxisSpacing: 30,
                   childAspectRatio: 2 / 2.4,
                   crossAxisSpacing: 0,
                 )),
