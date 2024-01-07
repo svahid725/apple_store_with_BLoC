@@ -4,6 +4,7 @@ import 'package:apple_store/constants/app_theme.dart';
 import 'package:apple_store/constants/font_styles.dart';
 import 'package:apple_store/screens/category_screen.dart';
 import 'package:apple_store/screens/home_screen.dart';
+import 'package:apple_store/screens/product_detail_screen.dart';
 import 'package:apple_store/screens/product_list_screen.dart';
 import 'package:apple_store/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,8 @@ class _MyAppState extends State<MyApp> {
         backgroundColor: AppColors.backgroundScreenColor,
         body: IndexedStack(
           index: selectedBottomNavIndex,
-          children: getScreens(),
+          children: [ProductDetailScreen()],
+          // children: getScreens(),
         ),
         bottomNavigationBar: ClipRRect(
           child: BackdropFilter(
