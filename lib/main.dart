@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:apple_store/constants/app_theme.dart';
 import 'package:apple_store/constants/font_styles.dart';
 import 'package:apple_store/screens/category_screen.dart';
 import 'package:apple_store/screens/home_screen.dart';
@@ -29,6 +30,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: AppColors.backgroundScreenColor,
         body: IndexedStack(
           index: selectedBottomNavIndex,
           children: getScreens(),
@@ -101,6 +103,7 @@ class _MyAppState extends State<MyApp> {
 
 
                   BottomNavigationBarItem(
+                    activeIcon: Image.asset('assets/images/icon_home_active.png'),
                     icon: Container(
                       margin: const EdgeInsets.only(bottom: 4),
                       decoration: const BoxDecoration(boxShadow: [
@@ -110,9 +113,9 @@ class _MyAppState extends State<MyApp> {
                             spreadRadius: -7,
                             offset: Offset(0, 10))
                       ]),
-                      child: Image.asset('assets/images/icon_profile.png'),
+                      child: Image.asset('assets/images/icon_home.png'),
                     ),
-                    label: 'حساب کاربری',
+                    label: 'خانه',
                   ),
                 ]),
           ),

@@ -16,7 +16,9 @@ class ProductItem extends StatelessWidget {
         width: 160,
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
         decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(15))),
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(15)),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -40,8 +42,8 @@ class ProductItem extends StatelessWidget {
                   left: 5,
                   bottom: 0,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 2, horizontal: 8),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
                     decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(20)),
