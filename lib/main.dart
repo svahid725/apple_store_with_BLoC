@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:apple_store/constants/app_theme.dart';
 import 'package:apple_store/constants/font_styles.dart';
+import 'package:apple_store/data/datasource/authentication_datasource.dart';
 import 'package:apple_store/screens/card_screen.dart';
 import 'package:apple_store/screens/home_screen.dart';
 import 'package:apple_store/screens/product_list_screen.dart';
@@ -25,18 +26,30 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int selectedBottomNavIndex = 0 ;
+  int selectedBottomNavIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.backgroundScreenColor,
-        body: IndexedStack(
-          index: selectedBottomNavIndex,
-          children: getScreens(),
-          // children: getScreens(),
-        ),
+        body: IndexedStack(index: selectedBottomNavIndex, children: [
+          SafeArea(
+              child: Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  AuthenticationRemote auth = AuthenticationRemote();
+                  auth.register(
+                    'hello1234',
+                    '123456',
+                    '123456',
+                  );
+                },
+                child: const Text('click to re register')),
+          ))
+        ]
+            // children: getScreens(),
+            ),
         bottomNavigationBar: ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
@@ -45,13 +58,12 @@ class _MyAppState extends State<MyApp> {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 onTap: (value) => setState(() {
-                  selectedBottomNavIndex = value;
-                }),
+                      selectedBottomNavIndex = value;
+                    }),
                 selectedLabelStyle: t10sb,
                 currentIndex: selectedBottomNavIndex,
                 unselectedLabelStyle: t10sb.apply(color: Colors.black),
                 items: [
-
                   BottomNavigationBarItem(
                     activeIcon: Image.asset('assets/images/icon_profile_active.png'),
                     icon: Container(
@@ -63,13 +75,10 @@ class _MyAppState extends State<MyApp> {
                             spreadRadius: -7,
                             offset: Offset(0, 10))
                       ]),
-                      child:
-                          Image.asset('assets/images/icon_profile.png'),
+                      child: Image.asset('assets/images/icon_profile.png'),
                     ),
                     label: 'حساب کاربری',
                   ),
-
-
                   BottomNavigationBarItem(
                     activeIcon: Image.asset('assets/images/icon_basket_active.png'),
                     icon: Container(
@@ -85,8 +94,6 @@ class _MyAppState extends State<MyApp> {
                     ),
                     label: 'سبد خرید',
                   ),
-
-
                   BottomNavigationBarItem(
                     activeIcon: Image.asset('assets/images/icon_category_active.png'),
                     icon: Container(
@@ -102,8 +109,6 @@ class _MyAppState extends State<MyApp> {
                     ),
                     label: 'دسته بندی',
                   ),
-
-
                   BottomNavigationBarItem(
                     activeIcon: Image.asset('assets/images/icon_home_active.png'),
                     icon: Container(
@@ -127,7 +132,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   List<Widget> getScreens() {
-    return <Widget> [
+    return <Widget>[
       const ProfileScreen(),
       const CardScreen(),
       const ProductListScreen(),
