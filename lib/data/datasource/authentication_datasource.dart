@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 class AuthenticationRemote {
-  final _dio = Dio(BaseOptions(
-      baseUrl: 'https://startflutter.ir/api/'),
-
+  final _dio = Dio(
+    BaseOptions(
+      baseUrl: 'https://startflutter.ir/api/',
+      headers: {'accept': 'application/json'},
+    ),
   );
 
   Future<void> register(
@@ -16,13 +19,18 @@ class AuthenticationRemote {
       'password': password,
       'passwordConfirm': passwordConfirm,
     };
-    print(data);
-    
-    final response = await _dio.post(
-      'collections/users/records',
-      data: data,
-    );
-
-    print(response.statusCode);
+    Response response;
+    try {
+      response = await _dio.post(
+        'collections/users/records',
+        data: {
+          'username': username,
+          'password': password,
+          'passwordConfirm': passwordConfirm,
+        },
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

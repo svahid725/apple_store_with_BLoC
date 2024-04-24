@@ -40,9 +40,9 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () {
                   AuthenticationRemote auth = AuthenticationRemote();
                   auth.register(
-                    'hello1234',
-                    '123456',
-                    '123456',
+                    'hello123',
+                    '12345678',
+                    '12345678',
                   );
                 },
                 child: const Text('click to re register')),
