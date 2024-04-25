@@ -1,13 +1,9 @@
+import 'package:apple_store/di/di.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationRemote {
-  final _dio = Dio(
-    BaseOptions(
-      baseUrl: 'https://startflutter.ir/api/',
-      headers: {'accept': 'application/json'},
-    ),
-  );
+  final Dio _dio = locator.get();
 
   Future<void> register(
     String username,
@@ -29,8 +25,12 @@ class AuthenticationRemote {
           'passwordConfirm': passwordConfirm,
         },
       );
-    } catch (e) {
-      debugPrint(e.toString());
-    }
+      if (response.statusCode == 200){
+        print(response.data);
+      }
+    } on DioError catch (ex) {
+      debugPrint(ex.message.toString());
+      print(ex.response?.data['message']?.toString());
+    } catch (ex) {}
   }
 }
