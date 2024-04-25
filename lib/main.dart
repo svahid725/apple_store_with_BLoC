@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:apple_store/constants/app_theme.dart';
 import 'package:apple_store/constants/font_styles.dart';
 import 'package:apple_store/data/datasource/authentication_datasource.dart';
+import 'package:apple_store/di/di.dart';
 import 'package:apple_store/screens/card_screen.dart';
 import 'package:apple_store/screens/home_screen.dart';
 import 'package:apple_store/screens/product_list_screen.dart';
@@ -10,6 +11,7 @@ import 'package:apple_store/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  getItInit();
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -40,7 +42,7 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () {
                   AuthenticationRemote auth = AuthenticationRemote();
                   auth.register(
-                    'hello123',
+                    'hello126',
                     '12345678',
                     '12345678',
                   );
