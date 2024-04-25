@@ -1,6 +1,6 @@
 import 'package:apple_store/di/di.dart';
+import 'package:apple_store/util/api_exception.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class AuthenticationRemote {
   final Dio _dio = locator.get();
@@ -29,8 +29,11 @@ class AuthenticationRemote {
         print(response.data);
       }
     } on DioError catch (ex) {
-      debugPrint(ex.message.toString());
-      print(ex.response?.data['message']?.toString());
+      throw ApiException(
+        code: ex.response?.statusCode ,
+        message: ex.response?.data['message']
+      );
+
     } catch (ex) {}
   }
 }
