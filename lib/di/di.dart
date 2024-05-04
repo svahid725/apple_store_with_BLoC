@@ -1,7 +1,8 @@
+import 'package:apple_store/data/datasource/authentication_datasource.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-var locator = GetIt.instance;
+GetIt locator = GetIt.instance;
 
 void getItInit() {
   locator.registerSingleton<Dio>(
@@ -12,4 +13,8 @@ void getItInit() {
       ),
     ),
   );
+
+  // datasources
+  locator.registerFactory<IAuthenticationDatasource>(() => AuthenticationRemote());
+  
 }
