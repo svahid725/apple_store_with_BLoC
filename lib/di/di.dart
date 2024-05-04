@@ -2,10 +2,13 @@ import 'package:apple_store/data/datasource/authentication_datasource.dart';
 import 'package:apple_store/data/repository/authentication_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt locator = GetIt.instance;
 
-void getItInit() {
+void getItInit() async {
+
+  // components
   locator.registerSingleton<Dio>(
     Dio(
       BaseOptions(
@@ -14,6 +17,8 @@ void getItInit() {
       ),
     ),
   );
+
+  locator.registerSingleton<SharedPreferences>(await SharedPreferences.getInstance());
 
   // datasources
   locator.registerFactory<IAuthenticationDatasource>(() => AuthenticationRemote());
