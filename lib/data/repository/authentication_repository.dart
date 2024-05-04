@@ -1,8 +1,8 @@
 import 'package:apple_store/data/datasource/authentication_datasource.dart';
 import 'package:apple_store/di/di.dart';
 import 'package:apple_store/util/api_exception.dart';
+import 'package:apple_store/util/auth_manager.dart';
 import 'package:dartz/dartz.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class IAuthRepository {
   Future<Either<String, String>> register(String username, String password, String passwordConfirm);
@@ -12,7 +12,7 @@ abstract class IAuthRepository {
 
 class AuthenticationRepository extends IAuthRepository {
   final IAuthenticationDatasource _dataSource = locator.get();
-  final SharedPreferences _sharedPref = locator.get();
+
 
   @override
   Future<Either<String, String>> register(
@@ -33,8 +33,8 @@ class AuthenticationRepository extends IAuthRepository {
     try {
       String token = await _dataSource.login(username, password);
       if (token.isNotEmpty) {
-        _sharedPref.setString('access_token', token);
-        return Right('شما وارد شديد');
+        AuthManager.saveToken(token);
+        return const Right('شما وارد شديد');
       } else {
         return left('ورود ناموفق');
       }
