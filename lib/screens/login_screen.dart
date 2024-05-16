@@ -1,12 +1,16 @@
+import 'package:apple_store/bloc/authentication/auth_bloc.dart';
+import 'package:apple_store/bloc/authentication/auth_event.dart';
+import 'package:apple_store/bloc/authentication/auth_state.dart';
 import 'package:apple_store/constants/app_theme.dart';
 import 'package:apple_store/constants/font_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController(text: 'vahidsadr');
+  final TextEditingController _passwordController = TextEditingController(text: '12345678');
 
   @override
   Widget build(BuildContext context) {
@@ -95,14 +99,37 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        textStyle: t18sm.apply(fontFamily: 'sb'),
-                        minimumSize: const Size(200, 48),
-                      ),
-                      child: const Text('ورود به حساب کاربری'),
-                    )
+                    BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        if (state is AuthInitiateState) {
+                          return ElevatedButton(
+                            onPressed: () {
+                              BlocProvider.of<AuthBloc>(context).add(
+                                AuthLoginRequest(
+                                  _usernameController.text,
+                                  _passwordController.text,
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              textStyle: t18sm.apply(fontFamily: 'sb'),
+                              minimumSize: const Size(200, 48),
+                            ),
+                            child: const Text('ورود به حساب کاربری'),
+                          );
+                        }
+                        if (state is AuthLoadingState) {
+                          return const CircularProgressIndicator();
+                        }
+                        if (state is AuthResponseState) {
+                          return state.response.fold(
+                            (l) => Text(l),
+                            (r) => Text(r),
+                          );
+                        }
+                        return Text('خطای نامشخص');
+                      },
+                    ),
                   ],
                 ),
               ),
