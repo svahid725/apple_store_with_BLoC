@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt locator = GetIt.instance;
 
-void getItInit() async {
+Future<void> getItInit() async {
 
   // components
   locator.registerSingleton<Dio>(
@@ -20,7 +20,7 @@ void getItInit() async {
 
   locator.registerSingleton<SharedPreferences>(await SharedPreferences.getInstance());
 
-  // datasources
+  // data sources
   locator.registerFactory<IAuthenticationDatasource>(() => AuthenticationRemote());
 
   //repositories
