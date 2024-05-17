@@ -13,8 +13,8 @@ class CategoryRemoteDatasource extends ICategoryDatasource {
   @override
   Future<List<Category>> getCategories() async {
     try {
-      Response response = await _dio.post('collections/category/records');
-      return response.data['items'].map<Category>(Category.fromJson).toList();
+      Response response = await _dio.get('collections/category/records');
+      return response.data['items'].map<Category>((item )=> Category.fromJson(item)).toList();
     } on DioError catch (ex) {
       throw ApiException(
         code: ex.response?.statusCode,
