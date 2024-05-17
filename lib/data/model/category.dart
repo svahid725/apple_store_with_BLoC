@@ -20,7 +20,7 @@ class Category {
         json['collectionId'],
         json['id'],
         json['icon'],
-        json['thumbnail'],
+        'https://startflutter.ir/api/files/${json['collectionId']}/${json['id']}/${json['thumbnail']}',
         json['title'],
         json['color']
       );
