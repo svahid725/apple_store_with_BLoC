@@ -14,7 +14,7 @@ class Banner {
   factory Banner.fromJson(Map<String, dynamic> json) => Banner(
         json['id'],
         json['collectionId'],
-        json['thumbnail'],
+        'https://startflutter.ir/api/files/${json['collectionId']}/${json['id']}/${json['thumbnail']}',
         json['categoryId'],
       );
 }
