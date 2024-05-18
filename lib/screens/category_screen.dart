@@ -4,7 +4,6 @@ import 'package:apple_store/bloc/category/category_state.dart';
 import 'package:apple_store/constants/app_theme.dart';
 import 'package:apple_store/constants/font_styles.dart';
 import 'package:apple_store/data/model/category.dart';
-import 'package:apple_store/data/repository/category_repository.dart';
 import 'package:apple_store/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,11 +73,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   return _listCategory(categoryList: r);
                 });
               }
-              return const SliverToBoxAdapter(child: Center(child: Text('error')));
-            },
-          )
-        ],
-      )),
+                return const SliverToBoxAdapter(
+                  child: Center(child: Text('error')),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -86,7 +88,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
 class _listCategory extends StatelessWidget {
   List<Category> categoryList;
 
-  _listCategory({super.key, required this.categoryList});
+  _listCategory({
+    super.key,
+    required this.categoryList,
+  });
 
   @override
   Widget build(BuildContext context) {
