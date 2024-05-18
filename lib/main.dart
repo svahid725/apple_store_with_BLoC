@@ -1,17 +1,19 @@
 import 'dart:ui';
 
+import 'package:apple_store/bloc/category/category_bloc.dart';
 import 'package:apple_store/constants/app_theme.dart';
 import 'package:apple_store/constants/font_styles.dart';
-import 'package:apple_store/data/datasource/authentication_datasource.dart';
 import 'package:apple_store/di/di.dart';
 import 'package:apple_store/screens/card_screen.dart';
+import 'package:apple_store/screens/category_screen.dart';
 import 'package:apple_store/screens/home_screen.dart';
-import 'package:apple_store/screens/product_list_screen.dart';
 import 'package:apple_store/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
-  getItInit();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await getItInit();
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -35,23 +37,10 @@ class _MyAppState extends State<MyApp> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.backgroundScreenColor,
-        body: IndexedStack(index: selectedBottomNavIndex, children: [
-          SafeArea(
-              child: Center(
-            child: ElevatedButton(
-                onPressed: () {
-                  AuthenticationRemote auth = AuthenticationRemote();
-                  auth.register(
-                    'hello126',
-                    '12345678',
-                    '12345678',
-                  );
-                },
-                child: const Text('click to re register')),
-          ))
-        ]
-            // children: getScreens(),
-            ),
+        body: IndexedStack(
+          index: selectedBottomNavIndex,
+          children: getScreens(),
+        ),
         bottomNavigationBar: ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
@@ -137,7 +126,10 @@ class _MyAppState extends State<MyApp> {
     return <Widget>[
       const ProfileScreen(),
       const CardScreen(),
-      const ProductListScreen(),
+      BlocProvider(
+        create: (context) => CategoryBloc(),
+        child: const CategoryScreen(),
+      ),
       const HomeScreen(),
     ];
   }
